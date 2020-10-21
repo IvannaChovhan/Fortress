@@ -38,7 +38,7 @@ public class Tower extends Building {
     /* Own function for showing */
     @Override
     public void show() {
-        System.out.println("The tower was built in " + super.getCentury() + " and its height is "+ height + " m");
+        System.out.println("The tower was built in " + century + " and its height is "+ height + " m");
     }
 
     @Override

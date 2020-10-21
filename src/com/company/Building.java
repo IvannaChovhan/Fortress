@@ -6,8 +6,8 @@ package com.company;
  */
 
 abstract class Building {
-    private int century;
-    private float square;
+    protected int century;
+    protected float square;
 
     Building(int century, float square) {
         this.century = century;
