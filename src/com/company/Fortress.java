@@ -15,7 +15,7 @@ import java.util.Iterator;
 public class Fortress extends Building {
     private static final int MIN_SQUARE = 180;
     private String name;
-    private ArrayList<Tower> towers; // Composition
+    private ArrayList<Tower> towers; // Association
     private Person governor; // Aggregation
     private Garrison garrison;
 
