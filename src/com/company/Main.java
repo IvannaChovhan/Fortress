@@ -58,6 +58,7 @@ public class Main {
             it.next().show();
         }
 
-        System.out.println(TypeOfWarrior.showTypeOfWarriors());
+        String str = TypeOfWarrior.showTypeOfWarriors();
+        System.out.println(str.split(" "));
     }
 }
