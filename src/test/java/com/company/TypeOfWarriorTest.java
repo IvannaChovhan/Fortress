@@ -11,7 +11,8 @@ public class TypeOfWarriorTest {
         Assert.assertEquals("archer weapon: bow; swordsman weapon: sword; spearman weapon: spear", actual);
     }
 
-    @Test public void toStringTypeOfWarriorTest() {
+    @Test
+    public void toStringTypeOfWarriorTest() {
         String actual = TypeOfWarrior.SWORDSMAN.toString();
         Assert.assertEquals("swordsman", actual);
     }
