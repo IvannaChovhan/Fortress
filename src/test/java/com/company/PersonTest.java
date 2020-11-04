@@ -13,16 +13,4 @@ public class PersonTest {
         Assert.assertEquals(firstPerson.getName(), secondPerson.getName());
         Assert.assertEquals(firstPerson.getSurname(), secondPerson.getSurname());
     }
-
-    @Test
-    public void nonOverriddenHashcodeTest() {
-        boolean actual = (firstPerson.hashCode() == secondPerson.hashCode());
-        Assert.assertFalse(actual);
-    }
-
-    @Test
-    public void nonOverriddenEqualsTest() {
-        boolean actual = firstPerson.equals(secondPerson);
-        Assert.assertFalse(actual);
-    }
 }
