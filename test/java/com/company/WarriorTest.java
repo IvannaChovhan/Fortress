@@ -3,12 +3,17 @@ package com.company;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class WarriorTest {
-    Warrior warrior = new Warrior("John", "Watson", TypeOfWarrior.SWORDSMAN);
 
     @Test
     public void fightInterfaceMethodTest() {
+        Warrior warrior = mock(Warrior.class);
         warrior.fight();
-        Assert.assertEquals(true, warrior.getReadyToFight());
+        when(warrior.getReadyToFight()).thenReturn(true);
+        boolean value = warrior.getReadyToFight();
+        Assert.assertEquals(true, value);
     }
 }

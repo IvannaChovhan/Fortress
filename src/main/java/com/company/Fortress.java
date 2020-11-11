@@ -113,6 +113,13 @@ public class Fortress extends Building {
         this.governor = governor;
     }
 
+    public void setSquare(float square) {
+        if (square < MIN_SQUARE) {
+            throw new NotEnoughSpaceForFortressException("This space isn't enough for Fortress");
+        }
+        this.square = square;
+    }
+
     public void setTowers(ArrayList<Float> heights) {
 
         /* Creating an array of towers by their heights */
