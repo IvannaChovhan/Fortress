@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.exception.NotEnoughHighForTowerException;
 import org.junit.Assert;
 import org.junit.Test;
 import com.company.exception.NotEnoughSpaceForFortressException;
@@ -15,6 +16,10 @@ public class FortressTest {
 
     @Test(expected = NotEnoughSpaceForFortressException.class)
     public void constructorExceptionTest() {
+        fortress = mock(Fortress.class);
+        doThrow(new NotEnoughSpaceForFortressException("")).when(new Fortress(anyInt(), anyFloat(), anyString(),
+                                                                 new ArrayList(anyList()), any(),
+                                                                 new ArrayList(anyList())));
         fortress = new Fortress(17, 120, "Podilskaya", new ArrayList(Arrays.asList(18.9f)),
                 new Person("Inna", "Muliar"),
                 new ArrayList(Arrays.asList(new Warrior("Sergiy", "Karmeliuk", TypeOfWarrior.ARCHER))));
