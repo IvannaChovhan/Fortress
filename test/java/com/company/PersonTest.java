@@ -8,7 +8,7 @@ public class PersonTest {
     Person secondPerson = new Person("Mary", "Johnson");
 
     @Test
-    public void copyConstructorTest() {
+    public void Should_FailToCompare_WhenPersonFieldsAreDifferent() {
         firstPerson = new Person(secondPerson);
         Assert.assertEquals(firstPerson.getName(), secondPerson.getName());
         Assert.assertEquals(firstPerson.getSurname(), secondPerson.getSurname());

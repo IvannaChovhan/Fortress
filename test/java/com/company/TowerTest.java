@@ -4,29 +4,23 @@ import com.company.exception.NotEnoughHighForTowerException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.mockito.ArgumentMatchers.anyFloat;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-
 public class TowerTest {
     Tower tower1 = new Tower();
     Tower tower2 = new Tower();
 
     @Test(expected = NotEnoughHighForTowerException.class)
-    public void constructorExceptionTest() throws NotEnoughHighForTowerException {
-        tower1 = mock(Tower.class);
-        doThrow(new NotEnoughHighForTowerException("")).when(new Tower(anyFloat()));
+    public void Should_TrowException_When_HeightIsToSmallInConstructor() throws NotEnoughHighForTowerException {
         tower1 = new Tower(1f);
     }
 
     @Test
-    public void overriddenHashcodeTest() {
+    public void Should_Fail_WhenHashCodeMethodIsNotOverridden() {
         boolean actual = (tower1.hashCode() == tower2.hashCode());
         Assert.assertTrue(actual);
     }
 
     @Test
-    public void overriddenEqualsTest() {
+    public void Should_Fail_WhenEqualsMethodIsNotOverridden() {
         boolean actual = tower1.equals(tower2);
         Assert.assertTrue(actual);
     }
