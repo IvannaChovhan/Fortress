@@ -81,5 +81,7 @@ public class FortressTest {
         Mockito.when(garrison.getCount()).thenReturn(10);
         value = garrison.getCount();
         Assert.assertEquals(10, value);
+        
+        Mockito.verify(garrison, times(3)).getCount();
     }
 }
