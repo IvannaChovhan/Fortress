@@ -22,6 +22,9 @@ public class FortressTest {
 
         Assert.assertEquals("John", fortress.getGovernor().getName());
         Assert.assertEquals("Patcher", fortress.getGovernor().getSurname());
+        
+        Mockito.verify(governor, times(1)).getName();
+        Mockito.verify(governor, times(1)).getSurname();
     }
 
     @Test
@@ -40,6 +43,10 @@ public class FortressTest {
         Assert.assertEquals("John", fortress.getGarrison().getWarriors().get(0).getName());
         Assert.assertEquals("Weak", fortress.getGarrison().getWarriors().get(0).getSurname());
         Assert.assertEquals(TypeOfWarrior.SWORDSMAN, fortress.getGarrison().getWarriors().get(0).getType_of_warrior());
+        
+        Mockito.verify(warrior, times(1)).getName();
+        Mockito.verify(warrior, times(1)).getSurname();
+        Mockito.verify(warrior, times(1)).getType_of_warrior();
     }
 
     @Test
