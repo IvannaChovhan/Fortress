@@ -1,6 +1,6 @@
-package com.company;
+package com.com;
 
-import com.company.exception.NotEnoughHighForTowerException;
+import com.com.exception.NotEnoughHighForTowerException;
 import org.junit.Assert;
 import org.junit.Test;
 

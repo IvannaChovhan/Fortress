@@ -1,4 +1,4 @@
-package com.company;
+package com.com;
 
 import org.junit.Assert;
 import org.junit.Test;

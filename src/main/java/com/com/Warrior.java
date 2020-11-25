@@ -1,4 +1,4 @@
-package com.company;
+package com.com;
 
 /**
  *  The Warrior class contains information about person

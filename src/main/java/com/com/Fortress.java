@@ -1,7 +1,7 @@
-package com.company;
+package com.com;
 
-import com.company.exception.NotEnoughHighForTowerException;
-import com.company.exception.NotEnoughSpaceForFortressException;
+import com.com.exception.NotEnoughHighForTowerException;
+import com.com.exception.NotEnoughSpaceForFortressException;
 
 import java.util.ArrayList;
 import java.util.Iterator;

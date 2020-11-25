@@ -1,12 +1,9 @@
-package com.company;
+package com.com;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class WarriorTest {
 

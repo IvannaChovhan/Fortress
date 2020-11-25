@@ -1,14 +1,11 @@
-package com.company;
+package com.com;
 
 import org.junit.Assert;
 import org.junit.Test;
-import com.company.exception.NotEnoughSpaceForFortressException;
+import com.com.exception.NotEnoughSpaceForFortressException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-
-import static org.mockito.Mockito.*;
 
 public class FortressTest {
     private Fortress fortress = new Fortress();

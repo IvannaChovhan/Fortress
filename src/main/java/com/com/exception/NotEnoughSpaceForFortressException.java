@@ -1,4 +1,4 @@
-package com.company.exception;
+package com.com.exception;
 
 public class NotEnoughSpaceForFortressException extends RuntimeException {
     public NotEnoughSpaceForFortressException(String message) {
