@@ -4,6 +4,7 @@ import com.com.exception.NotEnoughHighForTowerException;
 import com.com.exception.NotEnoughSpaceForFortressException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -45,7 +46,12 @@ public class Fortress extends Building {
 
         /* Method to add a single warrior to garrison */
         public void addWarrior(Warrior w) {
-            this.warriors.add(w);
+            if (this.warriors.size() == 0) {
+                this.warriors = new ArrayList<Warrior>(Arrays.asList(w));
+            }
+            else {
+                this.warriors.add(w);
+            }
         }
 
         public void addWarrior(String name, String surname, TypeOfWarrior typeOfWarrior) {

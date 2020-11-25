@@ -2,42 +2,77 @@ package com.com;
 
 import org.junit.Assert;
 import org.junit.Test;
-import com.com.exception.NotEnoughSpaceForFortressException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import org.mockito.Mockito;
 
 public class FortressTest {
     private Fortress fortress = new Fortress();
 
-    @Test(expected = NotEnoughSpaceForFortressException.class)
-    public void Should_TrowException_When_SquareIsToSmallInConstructor() {
-        fortress = new Fortress(17, 120, "Podilskaya", new ArrayList(Arrays.asList(18.9f)),
-                new Person("Inna", "Muliar"),
-                new ArrayList(Arrays.asList(new Warrior("Sergiy", "Karmeliuk", TypeOfWarrior.ARCHER))));
-    }
+    @Test
+    public void Should_FailToGetGovernor_When_GovernorNotAdded() {
+        Person governor = Mockito.mock(Person.class);
+        governor.setName("John");
+        governor.setSurname("Patcher");
 
-    @Test(expected = NotEnoughSpaceForFortressException.class)
-    public void Should_TrowException_When_SquareIsToSmallInSetMethod() {
-        fortress.setSquare(1f);
+        Mockito.when(governor.getName()).thenReturn("John");
+        Mockito.when(governor.getSurname()).thenReturn("Patcher");
+
+        fortress.setGovernor(governor);
+
+        Assert.assertEquals("John", fortress.getGovernor().getName());
+        Assert.assertEquals("Patcher", fortress.getGovernor().getSurname());
     }
 
     @Test
-    public void Should_Fail_When_CountOfTowersNotZero() {
-        fortress.setTowers(new ArrayList<>());
+    public void Should_FailToGetWarrior_When_WarriorNotAdded() {
+        Warrior warrior = Mockito.mock(Warrior.class);
+        warrior.setName("John");
+        warrior.setSurname("Weak");
+        warrior.setType_of_warrior(TypeOfWarrior.SWORDSMAN);
 
-        int value = fortress.getCountTowers();
-        Assert.assertEquals(0, value);
+        Mockito.when(warrior.getName()).thenReturn("John");
+        Mockito.when(warrior.getSurname()).thenReturn("Weak");
+        Mockito.when(warrior.getType_of_warrior()).thenReturn(TypeOfWarrior.SWORDSMAN);
+
+        fortress.getGarrison().addWarrior(warrior);
+
+        Assert.assertEquals("John", fortress.getGarrison().getWarriors().get(0).getName());
+        Assert.assertEquals("Weak", fortress.getGarrison().getWarriors().get(0).getSurname());
+        Assert.assertEquals(TypeOfWarrior.SWORDSMAN, fortress.getGarrison().getWarriors().get(0).getType_of_warrior());
     }
 
     @Test
-    public void Should_Fail_When_CountOfTowersIsIncorrect() {
-        fortress.setTowers(new ArrayList<>(Arrays.asList(10f, 21f)));
-        int value = fortress.getCountTowers();
-        Assert.assertEquals(2, value);
+    public void Should_Fail_When_CountOfWarriorsIsIncorrect() {
+        Fortress.Garrison garrison = Mockito.mock(Fortress.Garrison.class);
 
-        fortress.setTowers(new ArrayList<>(Arrays.asList(12.5f, 16.2f, 180.1f, 15f)));
-        value = fortress.getCountTowers();
-        Assert.assertEquals(4, value);
+        ArrayList<Warrior> warriors = new ArrayList<Warrior>();
+        warriors.add(new Warrior("Jean", "Jacques", TypeOfWarrior.ARCHER));
+        warriors.add(new Warrior("Bruse", "Feamen", TypeOfWarrior.SPEARMAN));
+        warriors.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));
+        fortress.setGarrison(warriors);
+
+        Mockito.when(garrison.getCount()).thenReturn(3);
+        int value = garrison.getCount();
+        Assert.assertEquals(3, value);
+
+        warriors.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));
+        warriors.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));
+        fortress.setGarrison(warriors);
+
+        Mockito.when(garrison.getCount()).thenReturn(5);
+        value = garrison.getCount();
+        Assert.assertEquals(5, value);
+
+        warriors.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));
+        warriors.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));
+        warriors.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));
+        warriors.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));
+        warriors.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));
+        fortress.setGarrison(warriors);
+
+        Mockito.when(garrison.getCount()).thenReturn(10);
+        value = garrison.getCount();
+        Assert.assertEquals(10, value);
     }
 }
