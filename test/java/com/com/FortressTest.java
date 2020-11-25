@@ -12,8 +12,6 @@ public class FortressTest {
     @Test
     public void Should_FailToGetGovernor_When_GovernorNotAdded() {
         Person governor = Mockito.mock(Person.class);
-        governor.setName("John");
-        governor.setSurname("Patcher");
 
         Mockito.when(governor.getName()).thenReturn("John");
         Mockito.when(governor.getSurname()).thenReturn("Patcher");
@@ -30,9 +28,6 @@ public class FortressTest {
     @Test
     public void Should_FailToGetWarrior_When_WarriorNotAdded() {
         Warrior warrior = Mockito.mock(Warrior.class);
-        warrior.setName("John");
-        warrior.setSurname("Weak");
-        warrior.setType_of_warrior(TypeOfWarrior.SWORDSMAN);
 
         Mockito.when(warrior.getName()).thenReturn("John");
         Mockito.when(warrior.getSurname()).thenReturn("Weak");
