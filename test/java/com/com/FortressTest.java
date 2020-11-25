@@ -40,4 +40,10 @@ public class FortressTest {
         value = fortress.getCountTowers();
         Assert.assertEquals(4, value);
     }
+
+    @Test
+    public void Should_Fail_When_CountOfWarriorsNotZero() {
+        fortress.setGarrison(new ArrayList<Warrior>());
+        Assert.assertEquals(0, fortress.getGarrison().getCount());
+    }
 }
