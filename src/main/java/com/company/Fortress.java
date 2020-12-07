@@ -3,8 +3,9 @@ package com.company;
 import com.company.exception.NotEnoughHighForTowerException;
 import com.company.exception.NotEnoughSpaceForFortressException;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 /**
  * The Fortress class includes name of fortress,
@@ -59,6 +60,18 @@ public class Fortress extends Building {
             return warriors.size();
         }
 
+        public String getTheMostPopularWarriorsReward() {
+            List<String> mostPopularWarriorsReward = warriors
+                    .stream()
+                    .flatMap(w -> w.getRewards().stream())
+                    .map(Reward::getTitle)
+                    .collect(Collectors.toList());
+
+            return mostPopularWarriorsReward.stream()
+                    .reduce(BinaryOperator.maxBy(Comparator.comparingInt(i
+                            -> Collections.frequency(mostPopularWarriorsReward, i)))).orElse(null);
+        }
+
         /* Own function for showing */
         public void show() {
             System.out.println("There are " + this.getCount() + " warriors in a garisson of the fortress: \n");
@@ -99,6 +112,14 @@ public class Fortress extends Building {
         /* Creating governor and garrison for fortress */
         governor = new Person(gov);
         garrison = new Garrison(warriors);
+    }
+
+    @Override
+    public void setCentury(int century) {
+        this.century = century;
+        for (Tower tower: towers) {
+            tower.setCentury(century);
+        }
     }
 
     public void setName(String name) {
@@ -154,6 +175,53 @@ public class Fortress extends Building {
 
     public int getCountTowers() {
         return this.towers.size();
+    }
+
+    public void addTower(Tower tower) {
+        this.towers.add(tower);
+    }
+
+    public Map<String, List<Tower>> getNewTowers(int century) {
+        Map<String, List<Tower>> map = new HashMap<>();
+        List<Tower> newTowers = getTowers()
+                .stream()
+                .filter(e -> e.getCentury() >= century)
+                .collect(Collectors.toList());
+        map.put("Підходить: ", newTowers);
+        List<Tower> oldTowers = getTowers()
+                .stream()
+                .filter(e -> e.getCentury() < century)
+                .collect(Collectors.toList());
+        map.put("Не підходить: ", oldTowers);
+        map.forEach((k, v) -> System.out.println(k + ": " + v));
+        return map;
+    }
+
+    public double getAvgHeightSomeTowers(int century) {
+        List<Tower> someTowers = getTowers()
+                .stream()
+                .filter(e -> e.getCentury() == century)
+                .collect(Collectors.toList());
+        return  someTowers
+                .stream()
+                .mapToDouble(Tower::getHeight)
+                .average()
+                .orElseThrow(RuntimeException::new);
+    }
+
+    public double getAvgHeightTowers(){
+        return  getTowers()
+                .stream()
+                .mapToDouble(Tower::getHeight)
+                .average()
+                .orElseThrow(RuntimeException::new);
+    }
+
+    public Tower getMaxHeightTower(){
+        return  getTowers()
+                .stream()
+                .max(Comparator.comparing(Tower::getHeight))
+                .orElseThrow(RuntimeException::new);
     }
 
     /* Own function for showing */
