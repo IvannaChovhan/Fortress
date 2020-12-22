@@ -9,7 +9,7 @@ import org.mockito.Spy;
 
 import static org.mockito.Mockito.times;
 
-public class FortressTest {
+public class FortressIT {
 
     @Spy
     private Fortress fortress = new Fortress();
