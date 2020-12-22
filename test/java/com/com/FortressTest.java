@@ -5,24 +5,27 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import org.mockito.Mockito;
+import org.mockito.Spy;
+
+import static org.mockito.Mockito.times;
 
 public class FortressTest {
+
+    @Spy
     private Fortress fortress = new Fortress();
+    
+    @Spy
+    private Person governor = new Person();
 
     @Test
     public void Should_FailToGetGovernor_When_GovernorNotAdded() {
-        Person governor = Mockito.mock(Person.class);
-
-        Mockito.when(governor.getName()).thenReturn("John");
-        Mockito.when(governor.getSurname()).thenReturn("Patcher");
+        governor.setSurname("Patcher");
+        governor.setName("John");
 
         fortress.setGovernor(governor);
 
         Assert.assertEquals("John", fortress.getGovernor().getName());
         Assert.assertEquals("Patcher", fortress.getGovernor().getSurname());
-        
-        Mockito.verify(governor, times(1)).getName();
-        Mockito.verify(governor, times(1)).getSurname();
     }
 
     @Test
@@ -38,7 +41,7 @@ public class FortressTest {
         Assert.assertEquals("John", fortress.getGarrison().getWarriors().get(0).getName());
         Assert.assertEquals("Weak", fortress.getGarrison().getWarriors().get(0).getSurname());
         Assert.assertEquals(TypeOfWarrior.SWORDSMAN, fortress.getGarrison().getWarriors().get(0).getType_of_warrior());
-        
+
         Mockito.verify(warrior, times(1)).getName();
         Mockito.verify(warrior, times(1)).getSurname();
         Mockito.verify(warrior, times(1)).getType_of_warrior();
@@ -76,7 +79,7 @@ public class FortressTest {
         Mockito.when(garrison.getCount()).thenReturn(10);
         value = garrison.getCount();
         Assert.assertEquals(10, value);
-        
+
         Mockito.verify(garrison, times(3)).getCount();
     }
 }
