@@ -5,26 +5,44 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <jdk.version>11</jdk.version>
+        <jdk.version>15.0.1</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <argLine>--enable-preview</argLine>
+        <maven.compiler.source>1.14</maven.compiler.source>
+        <maven.compiler.target>1.14</maven.compiler.target>
     </properties>
 
     <reporting>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.6</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>
 
-
-    <groupId>org.example</groupId>
+    <groupId>groupId</groupId>
     <artifactId>pract1_fortress</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>15.0.1</version>
     <build>
         <plugins>
             <plugin>
@@ -54,8 +72,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
-                    <parallel>classes</parallel>
-                    <threadCount>5</threadCount>
+                    <parallel>methods</parallel>
+                    <threadCount>4</threadCount>
                 </configuration>
                 <executions>
                     <execution>
@@ -64,25 +82,6 @@
                         <goals>
                             <goal>test</goal>
                         </goals>
-                        <configuration>
-                            <skipTests>false</skipTests>
-                            <includes>
-                                <include>/*Test.java</include>
-                            </includes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>integration-tests</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <configuration>
-                            <skipTests>false</skipTests>
-                            <includes>
-                                <include>/*IT.*</include>
-                            </includes>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -96,17 +95,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    
 </project>
