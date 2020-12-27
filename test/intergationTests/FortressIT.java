@@ -1,5 +1,9 @@
-package com.com;
+package intergationTests;
 
+import com.com.Fortress;
+import com.com.Person;
+import com.com.TypeOfWarrior;
+import com.com.Warrior;
 import org.junit.Assert;
 import org.junit.Test;
 

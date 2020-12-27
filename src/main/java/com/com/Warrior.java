@@ -13,12 +13,12 @@ public class Warrior extends Person implements Fightable{
     private boolean ready_to_fight = false;
     private List<Reward> rewards;
 
-    Warrior(String name, String surname, TypeOfWarrior type) {
+    public Warrior(String name, String surname, TypeOfWarrior type) {
         super(name, surname); // passed to parent constructor
         this.type_of_warrior = type;
     }
 
-    Warrior(String name, String surname, TypeOfWarrior type, List<Reward> rewards) {
+    public Warrior(String name, String surname, TypeOfWarrior type, List<Reward> rewards) {
         super(name, surname); // passed to parent constructor
         this.type_of_warrior = type;
         this.rewards = rewards;

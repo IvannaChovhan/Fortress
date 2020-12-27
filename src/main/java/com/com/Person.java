@@ -8,6 +8,11 @@ public class Person {
     private String name;
     private String surname;
 
+    public Person(){
+        this.name = "No name";
+        this.surname = "No surname";
+    }
+
     public Person(String name, String surname){
         this.name = name;
         this.surname = surname;

@@ -1,4 +1,4 @@
-package com.company;
+package com.com;
 
 public class Reward {
     private String title;
