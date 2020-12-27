@@ -1,4 +1,4 @@
-package com.company.exception;
+package com.com.exception;
 
 public class NotEnoughHighForTowerException extends Exception {
     public NotEnoughHighForTowerException(String message) {

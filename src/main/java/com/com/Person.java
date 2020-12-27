@@ -1,4 +1,4 @@
-package com.company;
+package com.com;
 
 /**
  * The Person class contains the most important

@@ -1,4 +1,4 @@
-package com.company;
+package com.com;
 
 import java.util.ArrayList;
 import java.util.Iterator;

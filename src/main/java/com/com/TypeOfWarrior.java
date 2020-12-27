@@ -1,4 +1,4 @@
-package com.company;
+package com.com;
 
 /* Three types of warriors */
 public enum TypeOfWarrior {

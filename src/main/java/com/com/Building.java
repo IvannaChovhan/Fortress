@@ -1,4 +1,4 @@
-package com.company;
+package com.com;
 
 /**
  *  Abstract class that contains information about century,
