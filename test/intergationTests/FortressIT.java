@@ -38,24 +38,24 @@ public class FortressIT {
 
         Mockito.when(warrior.getName()).thenReturn("John");
         Mockito.when(warrior.getSurname()).thenReturn("Weak");
-        Mockito.when(warrior.getType_of_warrior()).thenReturn(TypeOfWarrior.SWORDSMAN);
+        Mockito.when(warrior.getTypeOfWarrior()).thenReturn(TypeOfWarrior.SWORDSMAN);
 
         fortress.getGarrison().addWarrior(warrior);
 
         Assert.assertEquals("John", fortress.getGarrison().getWarriors().get(0).getName());
         Assert.assertEquals("Weak", fortress.getGarrison().getWarriors().get(0).getSurname());
-        Assert.assertEquals(TypeOfWarrior.SWORDSMAN, fortress.getGarrison().getWarriors().get(0).getType_of_warrior());
+        Assert.assertEquals(TypeOfWarrior.SWORDSMAN, fortress.getGarrison().getWarriors().get(0).getTypeOfWarrior());
 
         Mockito.verify(warrior, times(1)).getName();
         Mockito.verify(warrior, times(1)).getSurname();
-        Mockito.verify(warrior, times(1)).getType_of_warrior();
+        Mockito.verify(warrior, times(1)).getTypeOfWarrior();
     }
 
     @Test
     public void Should_Fail_When_CountOfWarriorsIsIncorrect() {
         Fortress.Garrison garrison = Mockito.mock(Fortress.Garrison.class);
 
-        ArrayList<Warrior> warriors = new ArrayList<Warrior>();
+        ArrayList<Warrior> warriors = new ArrayList<>();
         warriors.add(new Warrior("Jean", "Jacques", TypeOfWarrior.ARCHER));
         warriors.add(new Warrior("Bruse", "Feamen", TypeOfWarrior.SPEARMAN));
         warriors.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));

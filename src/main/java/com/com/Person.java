@@ -1,10 +1,14 @@
 package com.com;
 
+import org.apache.log4j.Logger;
+
 /**
  * The Person class contains the most important
  * information about human like name and surname
  */
 public class Person {
+
+    private static final Logger LOGGER = Logger.getLogger(Person.class);
     private String name;
     private String surname;
 
@@ -41,6 +45,6 @@ public class Person {
 
     /* Own function for showing */
     public void show(){
-        System.out.println("Name: " + name + "\nSurname: " + surname);
+        LOGGER.info("Name: " + name + "\nSurname: " + surname);
     }
 }

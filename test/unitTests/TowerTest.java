@@ -6,8 +6,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TowerTest {
-    Tower tower1 = new Tower();
-    Tower tower2 = new Tower();
+
+    private Tower tower1 = new Tower();
+    private final Tower tower2 = new Tower();
 
     @Test(expected = NotEnoughHighForTowerException.class)
     public void Should_TrowException_When_HeightIsToSmallInConstructor() throws NotEnoughHighForTowerException {

@@ -2,7 +2,7 @@ package com.com;
 
 import com.com.exception.NotEnoughHighForTowerException;
 import com.com.exception.NotEnoughSpaceForFortressException;
-import com.com.Reward;
+import org.apache.log4j.Logger;
 
 import java.util.*;
 import java.util.function.BinaryOperator;
@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  */
 
 public class Fortress extends Building {
+    private static final Logger LOGGER = Logger.getLogger(Fortress.class);
     private static final int MIN_SQUARE = 180;
     private String name;
     private ArrayList<Tower> towers; // Association
@@ -30,7 +31,7 @@ public class Fortress extends Building {
         private ArrayList<Warrior> warriors;
 
         public Garrison() {
-            warriors = new ArrayList<Warrior>();
+            warriors = new ArrayList<>();
         }
 
         public Garrison(ArrayList<Warrior> warriors) {
@@ -47,8 +48,8 @@ public class Fortress extends Building {
 
         /* Method to add a single warrior to garrison */
         public void addWarrior(Warrior w) {
-            if (this.warriors.size() == 0) {
-                this.warriors = new ArrayList<Warrior>(Arrays.asList(w));
+            if (this.warriors.isEmpty()) {
+                this.warriors = new ArrayList<>(Collections.singletonList(w));
             }
             else {
                 this.warriors.add(w);
@@ -79,17 +80,16 @@ public class Fortress extends Building {
         }
 
         /* Own function for showing */
-        public void show() {
-            System.out.println("There are " + this.getCount() + " warriors in a garisson of the fortress: \n");
-            Iterator<Warrior> it = warriors.iterator();
-            while(it.hasNext()) {
-                it.next().show();
+        void show() {
+            LOGGER.info("There are " + this.getCount() + " warriors in a garisson of the fortress: \n");
+            for (Warrior warrior : warriors) {
+                warrior.show();
             }
         }
     }
 
     public Fortress() {
-        towers = new ArrayList<Tower>();
+        towers = new ArrayList<>();
         garrison = new Garrison();
     }
 
@@ -102,15 +102,14 @@ public class Fortress extends Building {
         this.name = name;
 
         /* Creating an array of towers by their heights */
-        towers = new ArrayList<Tower>();
-        Iterator<Float> it = heights.iterator();
+        towers = new ArrayList<>();
 
-        while(it.hasNext()) {
+        for (Float height : heights) {
             Tower tmp = null;
             try {
-                tmp = new Tower(this.getCentury(), this.getSquare(), it.next());
+                tmp = new Tower(this.getCentury(), this.getSquare(), height);
             } catch (NotEnoughHighForTowerException e) {
-                System.out.println(e.getMessage());
+                LOGGER.info(e.getMessage());
             }
             towers.add(tmp);
         }
@@ -140,6 +139,7 @@ public class Fortress extends Building {
         this.governor = governor;
     }
 
+    @Override
     public void setSquare(float square) {
         if (square < MIN_SQUARE) {
             throw new NotEnoughSpaceForFortressException("This space isn't enough for Fortress");
@@ -150,14 +150,13 @@ public class Fortress extends Building {
     public void setTowers(ArrayList<Float> heights) {
 
         /* Creating an array of towers by their heights */
-        towers = new ArrayList<Tower>();
-        Iterator<Float> it = heights.iterator();
-        while(it.hasNext()) {
+        towers = new ArrayList<>();
+        for (Float height : heights) {
             Tower tmp = null;
             try {
-                tmp = new Tower(this.getCentury(), this.getSquare(), it.next());
+                tmp = new Tower(this.getCentury(), this.getSquare(), height);
             } catch (NotEnoughHighForTowerException e) {
-                System.out.println(e.getMessage());
+                LOGGER.info(e.getMessage());
             }
             towers.add(tmp);
         }
@@ -167,7 +166,7 @@ public class Fortress extends Building {
         return name;
     }
 
-    public ArrayList<Tower> getTowers() {
+    private ArrayList<Tower> getTowers() {
         return towers;
     }
 
@@ -199,7 +198,7 @@ public class Fortress extends Building {
                 .filter(e -> e.getCentury() < century)
                 .collect(Collectors.toList());
         map.put("Не підходить: ", oldTowers);
-        map.forEach((k, v) -> System.out.println(k + ": " + v));
+        map.forEach((k, v) -> LOGGER.info(k + ": " + v));
         return map;
     }
 
@@ -231,20 +230,20 @@ public class Fortress extends Building {
     }
 
     /* Own function for showing */
+    @Override
     public void show() {
-        System.out.println("\nName of fortress: " + this.name + "\n");
+        LOGGER.info("\nName of fortress: " + this.name + "\n");
         super.show();
-        System.out.println("There are " + this.getCountTowers() + " towers: \n");
+        LOGGER.info("There are " + this.getCountTowers() + " towers: \n");
 
-        Iterator<Tower> it = towers.iterator();
-        while(it.hasNext()) {
-            it.next().show();
+        for (Tower tower : towers) {
+            tower.show();
         }
 
-        System.out.println("\nThe governor: \n");
+        LOGGER.info("\nThe governor: \n");
         this.governor.show();
 
-        System.out.println("\nThe garrison: \n");
+        LOGGER.info("\nThe garrison: \n");
         this.garrison.show();
     }
 

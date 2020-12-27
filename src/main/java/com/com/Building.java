@@ -1,23 +1,27 @@
 package com.com;
 
+import org.apache.log4j.Logger;
+
 /**
  *  Abstract class that contains information about century,
  *  when the building was built and its square in m2
  */
 
 abstract class Building {
-    protected int century;
-    protected float square;
+
+    private static final Logger LOGGER = Logger.getLogger(Building.class);
+    int century;
+    float square;
 
     Building(int century, float square) {
         this.century = century;
         this.square = square;
     }
 
-    public Building() {
+    Building() {
     }
 
-    public void setCentury(int century) {
+    void setCentury(int century) {
         this.century = century;
     }
 
@@ -29,17 +33,17 @@ abstract class Building {
         this.square = square;
     }
 
-    public int getCentury() {
+    int getCentury() {
         return century;
     }
 
-    public float getSquare() {
+    float getSquare() {
         return square;
     }
 
     /* Own function for showing */
-    public void show() {
-        System.out.println("The building was built in " + century + "th century and has square " + square + " м2");
+    void show() {
+        LOGGER.info("The building was built in " + century + "th century and has square " + square + " м2");
     }
 
 }

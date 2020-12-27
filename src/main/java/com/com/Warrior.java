@@ -1,5 +1,7 @@
 package com.com;
 
+import org.apache.log4j.Logger;
+
 import java.util.List;
 
 /**
@@ -9,40 +11,41 @@ import java.util.List;
 
 public class Warrior extends Person implements Fightable{
 
-    private TypeOfWarrior type_of_warrior;
-    private boolean ready_to_fight = false;
+    private static final Logger LOGGER = Logger.getLogger(Warrior.class);
+    private TypeOfWarrior typeOfWarrior;
+    private boolean readyToFight = false;
     private List<Reward> rewards;
 
     public Warrior(String name, String surname, TypeOfWarrior type) {
         super(name, surname); // passed to parent constructor
-        this.type_of_warrior = type;
+        this.typeOfWarrior = type;
     }
 
     public Warrior(String name, String surname, TypeOfWarrior type, List<Reward> rewards) {
         super(name, surname); // passed to parent constructor
-        this.type_of_warrior = type;
+        this.typeOfWarrior = type;
         this.rewards = rewards;
     }
 
     Warrior(Person p, TypeOfWarrior type) {
         super(p);
-        this.type_of_warrior = type;
+        this.typeOfWarrior = type;
     }
 
-    public void setType_of_warrior(TypeOfWarrior type) {
-        this.type_of_warrior = type;
+    public void setTypeOfWarrior(TypeOfWarrior type) {
+        this.typeOfWarrior = type;
     }
 
     public void setRewards(List<Reward> rewards) {
         this.rewards = rewards;
     }
 
-    public TypeOfWarrior getType_of_warrior() {
-        return type_of_warrior;
+    public TypeOfWarrior getTypeOfWarrior() {
+        return typeOfWarrior;
     }
 
     public boolean getReadyToFight() {
-        return ready_to_fight;
+        return readyToFight;
     }
 
     public List<Reward> getRewards() {
@@ -53,12 +56,12 @@ public class Warrior extends Person implements Fightable{
     @Override
     public void show() {
         super.show();
-        System.out.println("Type of warrior: " + type_of_warrior);
+        LOGGER.info("Type of warrior: " + typeOfWarrior);
     }
 
     @Override
     public void fight() {
-        System.out.println("I'm ready to fight");
-        ready_to_fight = true;
+        LOGGER.info("I'm ready to fight");
+        readyToFight = true;
     }
 }

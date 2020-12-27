@@ -1,32 +1,34 @@
 package com.com;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import org.apache.log4j.Logger;
 
-public class Main {
+import java.util.ArrayList;
+
+class Main {
+    private static final Logger LOGGER = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
 
         /* Array of heights for towers of fortress f1 */
-        ArrayList<Float> heights1 = new ArrayList<Float>();
+        ArrayList<Float> heights1 = new ArrayList<>();
         heights1.add((float) 50);
         heights1.add((float) 30);
         heights1.add((float) 20.2);
 
         /* Array of heights for towers of fortress f2 */
-        ArrayList<Float> heights2 = new ArrayList<Float>();
+        ArrayList<Float> heights2 = new ArrayList<>();
         heights2.add((float) 10);
         heights2.add((float) 12.4);
         heights2.add((float) 17.9);
 
         /* Array of warriors for garrison of fortress f1 */
-        ArrayList<Warrior> warriors1 = new ArrayList<Warrior>();
+        ArrayList<Warrior> warriors1 = new ArrayList<>();
         warriors1.add(new Warrior("James", "Williams", TypeOfWarrior.ARCHER));
         warriors1.add(new Warrior("Mike", "Karry", TypeOfWarrior.SPEARMAN));
         warriors1.add(new Warrior("Jordan", "Black", TypeOfWarrior.SWORDSMAN));
 
         /* Array of warriors for garrison of fortress f2 */
-        ArrayList<Warrior> warriors2 = new ArrayList<Warrior>();
+        ArrayList<Warrior> warriors2 = new ArrayList<>();
         warriors2.add(new Warrior("Jean", "Jacques", TypeOfWarrior.ARCHER));
         warriors2.add(new Warrior("Bruse", "Feamen", TypeOfWarrior.SPEARMAN));
         warriors2.add(new Warrior("Kevin", "Rockless", TypeOfWarrior.SWORDSMAN));
@@ -48,17 +50,16 @@ public class Main {
         Fortress f2 = new Fortress(15, 1540, "Khotyn", heights2, g2, warriors2);
 
         /* Array of fortresses for iterator */
-        ArrayList<Fortress> f = new ArrayList<Fortress>();
+        ArrayList<Fortress> f = new ArrayList<>();
         f.add(f1);
         f.add(f2);
 
         /* Showing each fortress in array */
-        Iterator<Fortress> it = f.iterator();
-        while(it.hasNext()) {
-            it.next().show();
+        for (Fortress fortress : f) {
+            fortress.show();
         }
 
         String str = TypeOfWarrior.showTypeOfWarriors();
-        System.out.println(str);
+        LOGGER.info(str);
     }
 }

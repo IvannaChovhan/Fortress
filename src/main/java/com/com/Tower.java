@@ -1,6 +1,7 @@
 package com.com;
 
 import com.com.exception.NotEnoughHighForTowerException;
+import org.apache.log4j.Logger;
 
 import java.util.Objects;
 
@@ -11,18 +12,18 @@ import java.util.Objects;
  */
 
 public class Tower extends Building {
+    private static final Logger LOGGER = Logger.getLogger(Tower.class);
     private static final float MIN_HEIGHT = 9f;
     private Float height;
 
     public Tower(float height) throws NotEnoughHighForTowerException {
         super();
-        this.height = height;
         if (height < MIN_HEIGHT) {
             throw new NotEnoughHighForTowerException("The Tower not high enough");
         } else {
             this.height = height;
         }
-    };
+    }
 
     public Tower(int century, float square, float height) throws NotEnoughHighForTowerException {
         super(century, square);// passed to parent constructor
@@ -31,7 +32,7 @@ public class Tower extends Building {
         } else {
             this.height = height;
         }
-    };
+    }
 
     public Tower() {
         this.height = MIN_HEIGHT;
@@ -48,12 +49,12 @@ public class Tower extends Building {
     /* Own function for showing */
     @Override
     public void show() {
-        System.out.println("The tower was built in " + century + " and its height is "+ height + " m");
+        LOGGER.info("The tower was built in " + century + " and its height is "+ height + " m");
     }
 
     @Override
     public int hashCode() {
-        int result = 17;;
+        int result = 17;
         result += 31 * height.hashCode();
         return result;
     }

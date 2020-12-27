@@ -1,5 +1,5 @@
 package com.com;
 
-public interface Fightable {
+interface Fightable {
     void fight();
 }

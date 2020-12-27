@@ -1,20 +1,25 @@
-package com.com;
+package intergationTests;
 
+import com.com.Fortress;
+import com.com.Person;
+import com.com.TypeOfWarrior;
+import com.com.Warrior;
 import org.junit.Assert;
 import org.junit.Test;
 import com.com.exception.NotEnoughSpaceForFortressException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class FortressTest {
     private Fortress fortress = new Fortress();
 
     @Test(expected = NotEnoughSpaceForFortressException.class)
     public void Should_TrowException_When_SquareIsToSmallInConstructor() {
-        fortress = new Fortress(17, 120, "Podilskaya", new ArrayList(Arrays.asList(18.9f)),
+        fortress = new Fortress(17, 120, "Podilskaya", new ArrayList(Collections.singletonList(18.9f)),
                 new Person("Inna", "Muliar"),
-                new ArrayList(Arrays.asList(new Warrior("Sergiy", "Karmeliuk", TypeOfWarrior.ARCHER))));
+                new ArrayList(Collections.singletonList(new Warrior("Sergiy", "Karmeliuk", TypeOfWarrior.ARCHER))));
     }
 
     @Test(expected = NotEnoughSpaceForFortressException.class)
@@ -43,7 +48,7 @@ public class FortressTest {
 
     @Test
     public void Should_Fail_When_CountOfWarriorsNotZero() {
-        fortress.setGarrison(new ArrayList<Warrior>());
+        fortress.setGarrison(new ArrayList<>());
         Assert.assertEquals(0, fortress.getGarrison().getCount());
     }
 }
